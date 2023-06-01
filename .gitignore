@@ -15,6 +15,11 @@
 
 # User-specific stuff
 .idea/**/workspace.xml
+.idea/workspace.xml
+.idea/redis-lock.iml
+.idea/modules.xml
+.idea/.gitignore
+.idea/
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
