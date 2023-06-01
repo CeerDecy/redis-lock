@@ -1,4 +1,4 @@
-package redis
+package client
 
 import (
 	"context"
@@ -71,6 +71,7 @@ func (client *Client) DeleteKey(key string) int {
 	return int(result)
 }
 
-func (client *Client) RunLua(script string, keys []string, args ...any) {
-	client.rdb.Eval(client.ctx, script, keys, args...)
+func (client *Client) RunLua(script string, keys []string, args ...any) (any, error) {
+	result, err := client.rdb.Eval(client.ctx, script, keys, args...).Result()
+	return result, err
 }
