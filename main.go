@@ -8,8 +8,8 @@ import (
 
 // git push -u origin main
 func main() {
-	redisLock := lock.MakeRedisLock()
-	tryLock, err := redisLock.TryLock("service ")
+	redisLock := lock.MakeRedisLock("service")
+	tryLock, err := redisLock.TryLock()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -18,7 +18,11 @@ func main() {
 		return
 	}
 	time.Sleep(20 * time.Second)
-	redisLock.UnLock()
-	time.Sleep(4 * time.Second)
+	_, err = redisLock.UnLock()
+	if err != nil {
+		fmt.Println(err)
+	}
+	//fmt.Println(redisLock)
+	//time.Sleep(4 * time.Second)
 	fmt.Println("Done")
 }
